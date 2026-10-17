@@ -114,11 +114,22 @@ details.set[open] summary::after{content:"\2013"}
 .result .pic{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
 .result .pic img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{transform:translateY(24px) scale(.97);opacity:0}}
-.result .side{display:flex;flex-direction:column;gap:18px;justify-content:center;min-width:0}
-.result h2{margin:0;font:400 44px/46px var(--serif);letter-spacing:-.015em;text-wrap:balance}
+.result .side{display:flex;flex-direction:column;gap:16px;justify-content:safe center;min-width:0;min-height:0;overflow-y:auto}
+.result h2{margin:0;font:400 36px/40px var(--serif);letter-spacing:-.015em;text-wrap:balance}
 .result p{margin:0;color:var(--muted)}
 .result .actions{display:flex;flex-direction:column;gap:10px}
+#resultFrames .fbtn canvas{height:96px}
+#resultFrames.grid2 .fbtn canvas{height:110px}
 .saved{font:500 12px/16px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#4CC38A}
+.namefield{display:flex;flex-direction:column;gap:6px}
+.namefield label{font:600 12px/16px var(--sans);color:var(--muted)}
+.namefield input{min-height:48px;padding:0 14px;border-radius:12px;border:0;background:var(--surface);box-shadow:inset 0 0 0 1px var(--chrome);font:500 16px/1 var(--sans)}
+.namefield small{font:500 11px/14px var(--mono);letter-spacing:.04em;color:var(--faint);overflow-wrap:anywhere}
+.join{display:flex;align-items:center;gap:16px;padding:14px;border-radius:var(--r-md);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.join img{width:132px;height:132px;flex:none;padding:8px;background:#fff;border-radius:12px;image-rendering:pixelated}
+.join b{display:block;font:400 24px/28px var(--serif);letter-spacing:-.01em}
+.join span{display:block;margin-top:6px;font:500 13px/18px var(--sans);color:var(--muted)}
+.join small{display:block;margin-top:10px;font:500 11px/14px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 
 @media (max-width:900px){
   body{overflow:auto}
@@ -209,7 +220,7 @@ details.set[open] summary::after{content:"\2013"}
           </div>
           <div class="row"><div class="t"><b>Mirror</b><span>Shows and saves like a mirror</span></div><button class="sw" id="swMirror" type="button" aria-label="Mirror"></button></div>
           <div class="row"><div class="t"><b>Sound</b><span>Countdown beeps and shutter</span></div><button class="sw" id="swSound" type="button" aria-label="Sound"></button></div>
-          <div class="row"><div class="t"><b>Auto save</b><span>Downloads every finished photo</span></div><button class="sw" id="swAuto" type="button" aria-label="Auto save"></button></div>
+          <div class="row"><div class="t"><b>Auto save</b><span>Saves when you press Next guest</span></div><button class="sw" id="swAuto" type="button" aria-label="Auto save"></button></div>
           <div class="mini"><button type="button" id="fsBtn">Full screen</button></div>
         </div>
       </details>
@@ -231,8 +242,16 @@ details.set[open] summary::after{content:"\2013"}
   <div class="side">
     <div class="lbl" id="resultLbl">Done</div>
     <h2>Looking good.</h2>
-    <p>Try another frame before you save, or grab it as is.</p>
     <div class="frames" id="resultFrames"></div>
+    <div class="join">
+      <img alt="QR code to joinmingo.netlify.app" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuQAAALkAQAAAABv3x3IAAADy0lEQVR42u3dO47jMAyAYXIxvX2Dvf+x5gbSCTiFJZOinARYYJrlryKIHecr2BDUg1aT3xv9j/zmQEdHR0dHR0dHR0dHR/9/dTEz22vWY9wza/dzLV6OR/xjB8wacUdHR0dHr6kfFkZMqVeCjLl23PtW3RLpAhB3dHR0dPRy+pd/HWnyaOFS70uRforJYfMHETHpMbcmgLijo6Ojo1fOq2nYlUiv5GrzQ0QsP0fc0dHR0dHRP+VVr1dNul7p09asKyPhNuKOjo6Ojo6e8uqbOnSmT32YJbY3lStxR0dHR0evqXcN48qcesaPUMhel3Mb07jcAeKOjo6Ojl60Xn2zRjp3Jo3J4K7XvW1amLijo6Ojo6M/6F1V9RQx+1Yd52a+Yw27Va57cTt/IO7o6Ojo6LV0GZmzifhZ1XSINd7zR/aP6Bl9IdDR0dHRC+dV7+jwunvSermk2ZSiyavo6Ojo6OXr1ViletK0tctSasm0ZOLYl4k+hujo6OjoFfVr35KuN72ZUtqZNM7Z9HOeX33I0/FvxB0dHR0dvaJuZmaqem9U8iq136dmuurWFbirpipV9a8Z+5bQ0dHR0Wvqy1zu8WoH07E+Ytv66vPmJeaB0dHR0dGL6V9r9TnPpS5TwHLf8+GtllL3YPruo6Ojo6OXr1djuXl83pQka0nbtpM57FtCR0dHRy9fr6ocFopWr2HvRHp/a2Gn0/aiG69ciTs6Ojo6el19bEo6xraj0ej3iEWrN2KKf2tx49PSkom4o6Ojo6OXrVe9IvX1VV1XVbdjNxLP6Oxnb4g7Ojo6Onotfd/xOzKsbQ0jDrPn5kyp6VK7AdZX0dHR0dHr1qtpF/B84aqJ3HVoev9qqlxT1Uvc0dHR0dEr59V0VsYP1miYIBYR77c0HvGXmzMPjI6Ojo5OXn1Vr16pUkOGfTqwmv6xHGIl7ujo6OjotXRJnfVTWyX/Ia2gvnz5De+JQ0dHR0cvX6+mfb6+ZOqbgmcjpjMvrcrDmqtSr6Kjo6OjF9Y1j3OUpeMQq49ZyI4fZlf+cWr1MIu9+Ik7Ojo6OnrJenVp6hsXSseRVN8Z7MXo8o+5b0mJOzo6Ojp6ZX1fKN3XV58fkXVt1qvZ5t+IOzo6Ojo6+j56nPMdKbXds78SXxHnc8jEHR0dHR29nP71oZq9NiqlKeDlPE7sth9OvDbijo6Ojo5eOq/aVqWeD2lWQyKNz12dJMY34o6Ojo6OXjuv5h1Hd+bsZyhQdc263mjfHlMvcUdHR0dHL6ar/SLeiTs6Ojo6Ojo6Ojo6Ojr6v40ftlDoU7nKdbUAAAAASUVORK5CYII=">
+      <div><b>Don't go solo next time.</b><span>Scan to join mingo and find people to go with.</span><small>joinmingo.netlify.app</small></div>
+    </div>
+    <div class="namefield">
+      <label for="fileName">File name (optional)</label>
+      <input id="fileName" type="text" maxlength="40" autocomplete="off" spellcheck="false" placeholder="Your name or Instagram">
+      <small id="filePreview"></small>
+    </div>
     <div class="saved" id="savedNote" hidden>Saved to Downloads</div>
     <div class="actions">
       <button class="cta" id="dlBtn" type="button">Download photo</button>
@@ -788,23 +807,28 @@ async function runSession(){
   $('#count').innerHTML = '';
   busy = false;
   if (cancel || shots.length < 4){ shots = []; setChip('Ready'); updateUI(); return; }
-  current = { shots, layout:S.layout, frame:S.frame, saved:false };
-  await finish(current, S.autosave);
+  current = { shots, layout:S.layout, frame:S.frame, saved:false, label:'' };
+  await finish(current);
   setChip('Ready'); updateUI();
 }
 function stamp(){ const d = new Date(), p = n => String(n).padStart(2,'0'); return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`; }
-async function finish(sess, autosave){
+async function finish(sess){
   const c = compose(document.createElement('canvas'), LAYOUTS[sess.layout], frameById(sess.frame), sess.shots);
   const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.93));
   if (sess.url) URL.revokeObjectURL(sess.url);
-  sess.blob = blob; sess.url = URL.createObjectURL(blob); sess.name = sess.name || `mingo-booth-${stamp()}.jpg`;
+  sess.blob = blob; sess.url = URL.createObjectURL(blob); sess.stamp = sess.stamp || stamp();
   if (!gallery.includes(sess)) gallery.unshift(sess);
   renderGallery();
   showResult(sess);
-  if (autosave) download(sess);
 }
+function cleanLabel(t){ return (t || '').trim().replace(/^@/, '').replace(/[\\/:*?"<>|#%&{}$!'`=+]+/g, '').replace(/\s+/g, '-').slice(0, 40); }
+function fileNameFor(sess){
+  const l = cleanLabel(sess.label);
+  return `mingo-${l ? l + '-' : ''}${sess.stamp}-${sess.frame}.jpg`;
+}
+function updatePreview(){ if (current) $('#filePreview').textContent = fileNameFor(current); }
 function download(sess){
-  const a = document.createElement('a'); a.href = sess.url; a.download = sess.name.replace('.jpg', `-${sess.frame}.jpg`);
+  const a = document.createElement('a'); a.href = sess.url; a.download = fileNameFor(sess);
   document.body.appendChild(a); a.click(); a.remove();
   sess.saved = true; $('#savedNote').hidden = false;
 }
@@ -813,14 +837,20 @@ function showResult(sess){
   current = sess;
   $('#resultImg').src = sess.url;
   $('#savedNote').hidden = !sess.saved;
+  $('#fileName').value = sess.label || '';
+  updatePreview();
   $('#resultLbl').textContent = frameById(sess.frame).name;
   buildFrameButtons($('#resultFrames'), sess.layout, sess.frame, async id => {
-    sess.frame = id; sess.saved = false; await finish(sess, false);
+    sess.frame = id; sess.saved = false; await finish(sess);
   });
   $('#result').hidden = false;
   clearTimeout(resultTimer); resultTimer = setTimeout(closeResult, 60000);
 }
-function closeResult(){ $('#result').hidden = true; clearTimeout(resultTimer); }
+function closeResult(){
+  if ($('#result').hidden) return;
+  if (S.autosave && current && !current.saved && current.url) download(current);
+  $('#result').hidden = true; clearTimeout(resultTimer);
+}
 function renderGallery(){
   const g = $('#gallery'); g.innerHTML = '';
   $('#galCount').textContent = gallery.length ? '· ' + gallery.length : '';
@@ -893,7 +923,13 @@ $('#retryCam').onclick = startCamera;
 $('#demoCam').onclick = () => { makeDemo(); $('#camMsg').hidden = true; updateUI(); };
 $('#fsBtn').onclick = () => { const d = document.documentElement; (document.fullscreenElement ? document.exitFullscreen() : d.requestFullscreen && d.requestFullscreen()).catch?.(()=>{}); };
 $('#dlBtn').onclick = () => current && download(current);
-$('#retakeBtn').onclick = () => { closeResult(); runSession(); };
+$('#fileName').addEventListener('input', e => {
+  if (!current) return;
+  current.label = e.target.value; current.saved = false; $('#savedNote').hidden = true; updatePreview();
+  clearTimeout(resultTimer); resultTimer = setTimeout(closeResult, 60000);
+});
+$('#fileName').addEventListener('keydown', e => { if (e.key === 'Enter' && current){ e.preventDefault(); download(current); e.target.blur(); } });
+$('#retakeBtn').onclick = () => { if (current) current.saved = true; closeResult(); runSession(); };
 $('#nextBtn').onclick = closeResult;
 
 document.addEventListener('keydown', e => {

@@ -11,7 +11,9 @@ Open `index.html` in Chrome on a laptop, allow the camera, and press Space.
 - Four frames: mingo night, mingo dusk, Yebo, Red room
 - Retouch on/off (skin smoothing, brighter faces)
 - Filter on/off with five looks: Flash film, Club red, Riso pop, Dusk, Chrome
-- Finished photos save to Downloads automatically, and you can switch the frame after shooting
+- Guests can type a file name (their name or Instagram) before saving. With auto save on, the photo saves when you press Next guest
+- A QR code to joinmingo.netlify.app sits on the result screen
+- You can switch the frame after shooting
 
 ## Keys
 
